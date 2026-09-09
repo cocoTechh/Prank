@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Verification</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+      color: #111827;
+    }
+    .card {
+      width: min(92%, 430px);
+      background: white;
+      border-radius: 18px;
+      padding: 38px 30px;
+      text-align: center;
+      box-shadow: 0 15px 45px rgba(0,0,0,.12);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+    }
+    .icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eef2ff;
+      font-size: 34px;
+    }
+    h1 {
+      font-size: 25px;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    p {
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      font-size: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #111827;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    button:hover {
+      opacity: .9;
+      transform: scale(1.02);
+    }
+    button:active {
+      transform: scale(0.98);
+    }
+    .loader {
+      display: none;
+      margin: 25px auto 10px;
+      width: 42px;
+      height: 42px;
+      border: 4px solid #e5e7eb;
+      border-top-color: #111827;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    .result {
+      display: none;
+    }
+    .result h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: #e11d48;
+    }
+    .emoji {
+      font-size: 55px;
+      margin-bottom: 15px;
+      animation: bounce 0.8s ease infinite alternate;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+    .footer {
+      margin-top: 22px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <section id="startScreen">
+      <div class="icon">🔐</div>
+      <h1>Security Verification</h1>
+      <p>
+        Before continuing, please complete a quick security verification
+        to confirm you're not a robot.
+      </p>
+      <button onclick="startPrank()">
+        Continue Verification
+      </button>
+      <div class="footer">
+        Secure verification • No information is collected
+      </div>
+    </section>
+
+    <section id="loadingScreen" style="display:none;">
+      <div class="icon">🛡️</div>
+      <h1>Checking...</h1>
+      <p id="status">Running security verification...</p>
+      <div class="loader" style="display:block;"></div>
+    </section>
+
+    <section id="resultScreen" class="result">
+      <div class="emoji">😂</div>
+      <h2>GOT YOU!</h2>
+      <p>
+        Relax 😭<br><br>
+        This was just a harmless prank.<br>
+        No password, personal info, or data was collected at all.
+      </p>
+      <button onclick="location.reload()">
+        Prank Someone Else 😈
+      </button>
+    </section>
+  </main>
+
+  <script>
+    function startPrank() {
+      document.getElementById("startScreen").style.display = "none";
+      document.getElementById("loadingScreen").style.display = "block";
+      const status = document.getElementById("status");
+      
+      setTimeout(() => status.textContent = "Checking browser security...", 1200);
+      setTimeout(() => status.textContent = "Verifying connection...", 2500);
+      setTimeout(() => status.textContent = "Scanning for threats...", 3400);
+      setTimeout(() => status.textContent = "Almost done...", 4200);
+      setTimeout(() => {
+        document.getElementById("loadingScreen").style.display = "none";
+        document.getElementById("resultScreen").style.display = "block";
+      }, 5500);
+    }
+  </script>
+</body>
+</html>
